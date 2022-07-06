@@ -2765,6 +2765,25 @@ var calPoints = function(ops) {
   return scores.reduce((total, value) => total + value, 0)
 };
 
-log(calPoints(["5","2","C","D","+"])) // 30
-log(calPoints(["5","-2","4","C","D","9","+","+"])) // 27
-log(calPoints(["1","C"])) // 0
+//log(calPoints(["5","2","C","D","+"])) // 30
+//log(calPoints(["5","-2","4","C","D","9","+","+"])) // 27
+//log(calPoints(["1","C"])) // 0
+
+/*
+2278. Percentage of Letter in String
+
+Given a string s and a character letter, return the percentage of characters in s that equal letter rounded down to the nearest whole percent.
+*/
+
+var percentageLetter = function(s, letter) {
+  let counter = 0;
+
+  for(let char of s) {
+    if(char === letter) counter++
+  }
+
+  return Math.floor((counter/s.length)*100)
+};
+
+log(percentageLetter("foobar", "o")) // 33
+log(percentageLetter("jjjj", "k")) // 0
