@@ -2877,3 +2877,22 @@ var countPrefixes = function(words, s) {
 log(countPrefixes(["a","b","c","ab","bc","abc"], "abc")) // 3
 log(countPrefixes(["a","a"], "aa")) // 2
 
+/*
+876. Middle of the Linked List
+
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+*/
+
+var middleNode = function(head) {
+  let firstPointer = head;
+  let secondPointer = head;
+  
+  while(secondPointer != null && secondPointer.next != null){
+    firstPointer = firstPointer.next;
+    secondPointer = secondPointer.next.next;
+  }
+  
+  return firstPointer;
+};
