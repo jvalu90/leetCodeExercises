@@ -2874,8 +2874,8 @@ var countPrefixes = function(words, s) {
   return counter
 };
 
-log(countPrefixes(["a","b","c","ab","bc","abc"], "abc")) // 3
-log(countPrefixes(["a","a"], "aa")) // 2
+//log(countPrefixes(["a","b","c","ab","bc","abc"], "abc")) // 3
+//log(countPrefixes(["a","a"], "aa")) // 2
 
 /*
 876. Middle of the Linked List
@@ -2896,3 +2896,38 @@ var middleNode = function(head) {
   
   return firstPointer;
 };
+
+/*
+933. Number of Recent Calls
+
+You have a RecentCounter class which counts the number of recent requests within a certain time frame.
+
+Implement the RecentCounter class:
+
+    RecentCounter() Initializes the counter with zero recent requests.
+    int ping(int t) Adds a new request at time t, where t represents some time in milliseconds, and returns the number of requests that has happened in the past 3000 milliseconds (including the new request). Specifically, return the number of requests that have happened in the inclusive range [t - 3000, t].
+
+It is guaranteed that every call to ping uses a strictly larger value of t than the previous call.
+*/
+
+var RecentCounter = function() {
+  this.lastRequest = [] 
+};
+
+RecentCounter.prototype.ping = function(t) {
+  this.lastRequest.push(t)
+
+  while(this.lastRequest[0] < (t-3000)) {
+    this.lastRequest.shift()
+  }
+
+  return this.lastRequest.length;
+};
+
+let obj = new RecentCounter()
+let param_1 = obj.ping(1)
+let param_2 = obj.ping(100)
+let param_3 = obj.ping(3001)
+let param_4 = obj.ping(3002)
+
+log(param_4)
