@@ -2930,4 +2930,24 @@ let param_2 = obj.ping(100)
 let param_3 = obj.ping(3001)
 let param_4 = obj.ping(3002)
 
-log(param_4)
+//log(param_4)
+
+/*
+2032. Two Out of Three
+
+Given three integer arrays nums1, nums2, and nums3, return a distinct array containing all the values that are present in at least two out of the three arrays. You may return the values in any order. 
+*/
+
+var twoOutOfThree = function(nums1, nums2, nums3) {
+  let numsArray = [...new Set(nums1), ...new Set(nums2), ...new Set(nums3)]
+  let numsObject = {}
+
+  for (let element of numsArray) {
+    numsObject[element] === undefined? numsObject[element] = 1 : numsObject[element] += 1
+  }
+
+  return Object.keys(numsObject).filter(element => numsObject[element] >= 2).map(element => parseInt(element))
+};
+
+log(twoOutOfThree([1,1,3,2], [2,3], [3])) // [3,2]
+log(twoOutOfThree([3,1], [2,3], [1,2])) // [2,3,1]
