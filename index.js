@@ -2949,5 +2949,57 @@ var twoOutOfThree = function(nums1, nums2, nums3) {
   return Object.keys(numsObject).filter(element => numsObject[element] >= 2).map(element => parseInt(element))
 };
 
-log(twoOutOfThree([1,1,3,2], [2,3], [3])) // [3,2]
-log(twoOutOfThree([3,1], [2,3], [1,2])) // [2,3,1]
+//log(twoOutOfThree([1,1,3,2], [2,3], [3])) // [3,2]
+//log(twoOutOfThree([3,1], [2,3], [1,2])) // [2,3,1]
+
+/*
+2341. Maximum Number of Pairs in Array
+
+You are given a 0-indexed integer array nums. In one operation, you may do the following:
+
+    Choose two integers in nums that are equal.
+    Remove both integers from nums, forming a pair.
+
+The operation is done on nums as many times as possible.
+
+Return a 0-indexed integer array answer of size 2 where answer[0] is the number of pairs that are formed and answer[1] is the number of leftover integers in nums after doing the operation as many times as possible.
+*/
+
+var numberOfPairs = function(nums) {
+  let countPairs = []
+  let countNoPairs = []
+  nums = nums.sort((a, b) => a-b)
+
+  while (nums.length > 0) {
+    if (nums[0] === nums[1]) {
+      countPairs.push(nums.shift())
+      countPairs.push(nums.shift())
+    } else {
+      countNoPairs.push(nums.shift())
+    }
+  }
+  
+  return [countPairs.length / 2, countNoPairs.length]
+
+  /* Other solution
+
+    let pair = noPair = 0;
+    let map = {};
+    
+    for(let i of nums){
+        map[i] = undefined ? map[i] += 1 : map[i] = 1;
+    }
+    
+    for(let j of Object.values(map)){
+        pair += parseInt(j/2);
+        alone += j%2;
+    }
+    
+    return [pair, alone];
+
+  */
+};
+
+log(numberOfPairs([1,3,2,1,3,2,2])) // [3, 1]
+log(numberOfPairs([1,1])) // [1, 0]
+log(numberOfPairs([0])) // [0, 1]
