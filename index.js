@@ -3017,3 +3017,40 @@ var deleteNode = function(node) {
   node.next = node.next.next
 };
 
+/*
+2053. Kth Distinct String in an Array
+
+A distinct string is a string that is present only once in an array.
+
+Given an array of strings arr, and an integer k, return the kth distinct string present in arr. If there are fewer than k distinct strings, return an empty string "".
+
+Note that the strings are considered in the order in which they appear in the array.
+*/
+
+var kthDistinct = function(arr, k) {
+  let arrayObject = {};
+  let response
+
+  for (let element of arr) {
+    arrayObject[element] === undefined? arrayObject[element] = 1 : arrayObject[element]++
+  }
+
+  const arrayKeys = Object.keys(arrayObject).filter(element => arrayObject[element] === 1)
+  
+  
+  if (arrayKeys.length === 0) {
+    response = ''
+  } else {    
+    response = k - 1 > arrayKeys.length ? '' : arrayKeys[k-1]
+  }
+  
+  return response
+};
+
+log(kthDistinct(["d","b","c","b","c","a"], 2)) // 'a'
+log(kthDistinct(["aaa","aa","a"], 1)) // 'aaa'
+log(kthDistinct(["a","b","a"], 3)) // ''
+log(kthDistinct(["a","a"], 1)) // ''
+log(kthDistinct(["dbty"], 1)) // 'dbty'
+
+
