@@ -3047,10 +3047,33 @@ var kthDistinct = function(arr, k) {
   return response
 };
 
-log(kthDistinct(["d","b","c","b","c","a"], 2)) // 'a'
-log(kthDistinct(["aaa","aa","a"], 1)) // 'aaa'
-log(kthDistinct(["a","b","a"], 3)) // ''
-log(kthDistinct(["a","a"], 1)) // ''
-log(kthDistinct(["dbty"], 1)) // 'dbty'
+//log(kthDistinct(["d","b","c","b","c","a"], 2)) // 'a'
+//log(kthDistinct(["aaa","aa","a"], 1)) // 'aaa'
+//log(kthDistinct(["a","b","a"], 3)) // ''
+//log(kthDistinct(["a","a"], 1)) // ''
+//log(kthDistinct(["dbty"], 1)) // 'dbty'
 
+/*
+2351. First Letter to Appear Twice
 
+Given a string s consisting of lowercase English letters, return the first letter to appear twice.
+
+Note:
+
+    A letter a appears twice before another letter b if the second occurrence of a is before the second occurrence of b.
+    s will contain at least one letter that appears twice.
+*/
+
+var repeatedCharacter = function(s) {
+  let charObject = {}
+  for (let char of s) {
+    if(charObject[char] === undefined) {
+      charObject[char] = 1
+    } else {
+      return char
+    }
+  } 
+};
+
+log(repeatedCharacter("abccbaacz")) // "c"
+log(repeatedCharacter("abcdd")) // "d"
