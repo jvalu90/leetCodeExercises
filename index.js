@@ -3075,5 +3075,35 @@ var repeatedCharacter = function(s) {
   } 
 };
 
-log(repeatedCharacter("abccbaacz")) // "c"
-log(repeatedCharacter("abcdd")) // "d"
+//log(repeatedCharacter("abccbaacz")) // "c"
+//log(repeatedCharacter("abcdd")) // "d"
+
+/*
+1460. Make Two Arrays Equal by Reversing Sub-arrays
+
+You are given two integer arrays of equal length target and arr. In one step, you can select any non-empty sub-array of arr and reverse it. You are allowed to make any number of steps.
+
+Return true if you can make arr equal to target or false otherwise.
+*/
+
+var canBeEqual = function(target, arr) {
+  let targetObject = {};
+  let arrObject = {};
+  
+  for (let i = 0; i < target.length; i++) {
+    targetObject[target[i]] === undefined ? targetObject[target[i]] = 1 : targetObject[target[i]]++
+    arrObject[arr[i]] === undefined ? arrObject[arr[i]] = 1 : arrObject[arr[i]]++
+  } 
+  
+  for (let key in targetObject) {
+    if (targetObject[key] !== arrObject[key]) {
+      return false
+    }
+  }
+
+  return true
+};
+
+log(canBeEqual([1,2,3,4], [2,4,1,3])) // true
+log(canBeEqual([7], [7])) // true
+log(canBeEqual([3, 7, 9], [3, 7, 11])) // false
