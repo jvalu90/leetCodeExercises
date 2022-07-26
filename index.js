@@ -3102,6 +3102,17 @@ var canBeEqual = function(target, arr) {
   }
 
   return true
+
+  /*
+  Other solution
+
+    const getFreq = array => array.reduce((c, e) => (c[e] = (c[e] ?? 0) + 1, c), {});
+    
+    const targetCounter = getFreq(target);
+    const arrCounter = getFreq(arr);
+    
+    return Object.keys(arrCounter).every(e => targetCounter[e] === arrCounter[e]);
+  */
 };
 
 log(canBeEqual([1,2,3,4], [2,4,1,3])) // true
