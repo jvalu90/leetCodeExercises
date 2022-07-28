@@ -3115,6 +3115,26 @@ var canBeEqual = function(target, arr) {
   */
 };
 
-log(canBeEqual([1,2,3,4], [2,4,1,3])) // true
-log(canBeEqual([7], [7])) // true
-log(canBeEqual([3, 7, 9], [3, 7, 11])) // false
+//log(canBeEqual([1,2,3,4], [2,4,1,3])) // true
+//log(canBeEqual([7], [7])) // true
+//log(canBeEqual([3, 7, 9], [3, 7, 11])) // false
+
+/*
+104. Maximum Depth of Binary Tree
+
+Given the root of a binary tree, return its maximum depth.
+
+A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+*/
+
+var maxDepth = function(root) {
+  if (!root) return 0
+  
+  let counter = 1
+  const left = maxDepth(root.left)
+  const right = maxDepth(root.right)
+  
+  counter += Math.max(left, right)
+  
+  return counter
+};
