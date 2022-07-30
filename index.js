@@ -3138,3 +3138,19 @@ var maxDepth = function(root) {
   
   return counter
 };
+
+/*
+226. Invert Binary Tree
+
+Given the root of a binary tree, invert the tree, and return its root.
+*/
+
+var invertTree = function(root) {
+  if (!node) return node;
+  
+  [node.left, node.right] = [node.right, node.left];
+  invertTreeDFS(node.left);
+  invertTreeDFS(node.right);
+  
+  return node; 
+};
