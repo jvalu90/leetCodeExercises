@@ -3154,3 +3154,29 @@ var invertTree = function(root) {
   
   return node; 
 };
+
+/*
+2057. Smallest Index With Equal Value
+
+Given a 0-indexed integer array nums, return the smallest index i of nums such that i mod 10 == nums[i], or -1 if such index does not exist.
+
+x mod y denotes the remainder when x is divided by y.
+*/
+
+var smallestEqual = function(nums) {
+   let indexArray = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 10 === nums[i]) indexArray.push(i); 
+  }
+
+  if (indexArray.length === 0) {
+    return -1
+  } else {
+    return Math.min(...indexArray)
+  }
+};
+
+log(smallestEqual([0,1,2])) // 0
+log(smallestEqual([4,3,2,1])) // 2
+log(smallestEqual([1,2,3,4,5,6,7,8,9,0])) // -1
