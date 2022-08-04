@@ -3204,7 +3204,42 @@ var minCostToMoveChips = function(position) {
   return Math.min(evenCount, oddCount)
 };
 
-log(minCostToMoveChips([1,2,3])) // 1
-log(minCostToMoveChips([2,2,2,3,3])) // 2
-log(minCostToMoveChips([1,1000000000])) // 1
+//log(minCostToMoveChips([1,2,3])) // 1
+//log(minCostToMoveChips([2,2,2,3,3])) // 2
+//log(minCostToMoveChips([1,1000000000])) // 1
 
+/*
+2124. Check if All A's Appears Before All B's
+
+Given a string s consisting of only the characters 'a' and 'b', return true if every 'a' appears before every 'b' in the string. Otherwise, return false.
+*/
+
+var checkString = function(s) {
+  
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] > s[i+1]) return false
+  }
+
+  return true
+};
+
+//log(checkString("aaabbb")) //true
+//log(checkString("abab")) //false
+//log(checkString("bbb")) //true
+
+/*
+977. Squares of a Sorted Array
+
+Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+*/
+
+var sortedSquares = function(nums) {
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = Math.pow(nums[i], 2)
+  }
+
+  return nums.sort((a, b) => a - b)
+};
+
+log(sortedSquares([-4,-1,0,3,10])) // [0,1,9,16,100] 
+log(sortedSquares([-7,-3,2,3,11])) // [4,9,9,49,121]
