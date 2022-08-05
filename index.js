@@ -3241,5 +3241,28 @@ var sortedSquares = function(nums) {
   return nums.sort((a, b) => a - b)
 };
 
-log(sortedSquares([-4,-1,0,3,10])) // [0,1,9,16,100] 
-log(sortedSquares([-7,-3,2,3,11])) // [4,9,9,49,121]
+//log(sortedSquares([-4,-1,0,3,10])) // [0,1,9,16,100] 
+//log(sortedSquares([-7,-3,2,3,11])) // [4,9,9,49,121]
+
+/*
+94. Binary Tree Inorder Traversal
+
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+*/
+
+var inorderTraversal = function(root) {
+  let result = []; 
+  
+  function traverse(node) {
+    if(!node) {
+      return;
+    }   
+    
+    traverse(node.left);
+    result.push(node.val);
+    traverse(node.right);
+  }
+  
+  traverse(root);
+  return result;  
+};
