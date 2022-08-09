@@ -3266,3 +3266,32 @@ var inorderTraversal = function(root) {
   traverse(root);
   return result;  
 };
+
+/*
+2367. Number of Arithmetic Triplets
+
+You are given a 0-indexed, strictly increasing integer array nums and a positive integer diff. A triplet (i, j, k) is an arithmetic triplet if the following conditions are met:
+
+    i < j < k,
+    nums[j] - nums[i] == diff, and
+    nums[k] - nums[j] == diff.
+
+Return the number of unique arithmetic triplets.
+*/
+
+var arithmeticTriplets = function(nums, diff) {
+  let counter = 0
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 1; j < nums.length; j++) {
+      for (let k = 2; k < nums.length; k++) {
+        if (nums[j] - nums[i] == diff && nums[k] - nums[j] == diff) counter++
+      }
+    }
+  }
+
+  return counter
+};
+
+log(arithmeticTriplets([0,1,4,6,7,10], 3)) // 2
+log(arithmeticTriplets([4,5,6,7,8,9], 2)) // 2
