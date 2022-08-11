@@ -3293,5 +3293,33 @@ var arithmeticTriplets = function(nums, diff) {
   return counter
 };
 
-log(arithmeticTriplets([0,1,4,6,7,10], 3)) // 2
-log(arithmeticTriplets([4,5,6,7,8,9], 2)) // 2
+//log(arithmeticTriplets([0,1,4,6,7,10], 3)) // 2
+//log(arithmeticTriplets([4,5,6,7,8,9], 2)) // 2
+
+/*
+2363. Merge Similar Items
+
+You are given two 2D integer arrays, items1 and items2, representing two sets of items. Each array items has the following properties:
+
+    items[i] = [valuei, weighti] where valuei represents the value and weighti represents the weight of the ith item.
+    The value of each item in items is unique.
+
+Return a 2D integer array ret where ret[i] = [valuei, weighti], with weighti being the sum of weights of all items with value valuei.
+
+Note: ret should be returned in ascending order by value.
+*/
+
+var mergeSimilarItems = function(items1, items2) {
+  let items = items1.concat(items2)
+  let ret = {}
+
+  for (let [k, v] of items) {
+    ret[k] === undefined ? ret[k] = v : ret[k] += v;
+  }
+
+  return Object.entries(ret).map(element => [parseInt(element[0]), element[1]])
+};
+
+log(mergeSimilarItems([[1,1],[4,5],[3,8]], [[3,1],[1,5]])) // [[1,6],[3,9],[4,5]]
+log(mergeSimilarItems([[1,1],[3,2],[2,3]], [[2,1],[3,2],[1,3]])) // [[1,4],[2,4],[3,4]]
+log(mergeSimilarItems([[1,3],[2,2]], [[7,1],[2,2],[1,4]])) // [[1,7],[2,4],[7,1]]
