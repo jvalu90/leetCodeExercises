@@ -3320,6 +3320,34 @@ var mergeSimilarItems = function(items1, items2) {
   return Object.entries(ret).map(element => [parseInt(element[0]), element[1]])
 };
 
-log(mergeSimilarItems([[1,1],[4,5],[3,8]], [[3,1],[1,5]])) // [[1,6],[3,9],[4,5]]
-log(mergeSimilarItems([[1,1],[3,2],[2,3]], [[2,1],[3,2],[1,3]])) // [[1,4],[2,4],[3,4]]
-log(mergeSimilarItems([[1,3],[2,2]], [[7,1],[2,2],[1,4]])) // [[1,7],[2,4],[7,1]]
+//log(mergeSimilarItems([[1,1],[4,5],[3,8]], [[3,1],[1,5]])) // [[1,6],[3,9],[4,5]]
+//log(mergeSimilarItems([[1,1],[3,2],[2,3]], [[2,1],[3,2],[1,3]])) // [[1,4],[2,4],[3,4]]
+//log(mergeSimilarItems([[1,3],[2,2]], [[7,1],[2,2],[1,4]])) // [[1,7],[2,4],[7,1]]
+
+/*
+1403. Minimum Subsequence in Non-Increasing Order
+
+Given the array nums, obtain a subsequence of the array whose sum of elements is strictly greater than the sum of the non included elements in such subsequence. 
+
+If there are multiple solutions, return the subsequence with minimum size and if there still exist multiple solutions, return the subsequence with the maximum total sum of all its elements. A subsequence of an array can be obtained by erasing some (possibly zero) elements from the array. 
+
+Note that the solution with the given constraints is guaranteed to be unique. Also return the answer sorted in non-increasing order.
+*/
+
+var minSubsequence = function(nums) {
+  let greater = [], sumGreater = -1, sumNums = 0;
+
+  nums.sort((a, b) => a - b);
+
+  while (sumGreater <= sumNums) {
+    greater = greater.concat(nums.pop());
+
+    sumGreater = greater.reduce((total, element) => total + element, 0);
+    sumNums = nums.reduce((total, element) => total + element, 0);
+  }
+
+  return greater
+};
+
+log(minSubsequence([4,3,10,9,8])) // [10,9] 
+log(minSubsequence([4,4,7,6,7])) // [7,7,6] 
