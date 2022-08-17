@@ -3349,5 +3349,26 @@ var minSubsequence = function(nums) {
   return greater
 };
 
-log(minSubsequence([4,3,10,9,8])) // [10,9] 
-log(minSubsequence([4,4,7,6,7])) // [7,7,6] 
+//log(minSubsequence([4,3,10,9,8])) // [10,9] 
+//log(minSubsequence([4,4,7,6,7])) // [7,7,6] 
+
+/*
+206. Reverse Linked List
+
+Given the head of a singly linked list, reverse the list, and return the reversed list.
+*/
+
+var reverseList = function(head) {
+  const recursion = (prev, current) => {
+    if(!current) return prev
+
+    let next = current.next
+    current.next = prev
+
+    return recursion(current, next);
+  };
+  
+  return recursion(null, head);
+};
+
+
