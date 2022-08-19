@@ -3371,4 +3371,47 @@ var reverseList = function(head) {
   return recursion(null, head);
 };
 
+/*
+2373. Largest Local Values in a Matrix
+
+You are given an n x n integer matrix grid.
+
+Generate an integer matrix maxLocal of size (n - 2) x (n - 2) such that:
+
+    maxLocal[i][j] is equal to the largest value of the 3 x 3 matrix in grid centered around row i + 1 and column j + 1.
+
+In other words, we want to find the largest value in every contiguous 3 x 3 matrix in grid.
+
+Return the generated matrix.
+*/
+
+var largestLocal = function(grid) {
+  const result = [];
+  const limit = grid.length - 2;
+
+  const maxLocal= (x, y) => {
+    let max = 0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        max = Math.max(grid[x + i][y + j], max);
+      }
+    }
+    
+    return max;
+  };
+
+  for (let x = 0; x < limit; x++) {
+    let arr = [];
+    for (let y = 0; y < limit; y++) {
+      arr.push(maxLocal(x, y));
+    }
+  
+    result.push(arr);
+  }
+
+  return result;
+};
+
+log(largestLocal([[9,9,8,1],[5,6,2,6],[8,2,6,4],[6,2,2,2]])) // [[9,9],[8,6]]
+log(largestLocal([[1,1,1,1,1],[1,1,1,1,1],[1,1,2,1,1],[1,1,1,1,1],[1,1,1,1,1]])) // [[2,2,2],[2,2,2],[2,2,2]]
 
