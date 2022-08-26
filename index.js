@@ -3440,5 +3440,39 @@ var sortByBits = function(arr) {
   return arr.sort((a, b) => arrayObject[a] - arrayObject[b] || a - b) 
 };
 
-log(sortByBits([0,1,2,3,4,5,6,7,8])) // [0,1,2,4,8,3,5,6,7]
-log(sortByBits([1024,512,256,128,64,32,16,8,4,2,1])) // [1,2,4,8,16,32,64,128,256,512,1024]
+//log(sortByBits([0,1,2,3,4,5,6,7,8])) // [0,1,2,4,8,3,5,6,7]
+//log(sortByBits([1024,512,256,128,64,32,16,8,4,2,1])) // [1,2,4,8,16,32,64,128,256,512,1024]
+
+/*
+2357. Make Array Zero by Subtracting Equal Amounts
+
+You are given a non-negative integer array nums. In one operation, you must:
+
+    Choose a positive integer x such that x is less than or equal to the smallest non-zero element in nums.
+    Subtract x from every positive element in nums.
+
+Return the minimum number of operations to make every element in nums equal to 0.
+*/
+
+var minimumOperations = function(nums) {
+  // One solution with Arrays
+  let counter = 0;
+  
+  while (!nums.every(element => element === 0)) {
+    let min = Math.min(...nums.filter(element => element !== 0))
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] !== 0) nums[i] -= min
+    }
+
+    counter++
+  }
+
+  return counter
+
+  // Other solution with Set | It's beautiful
+
+  //return new Set(nums.filter(element => element !== 0)).size
+};
+
+log(minimumOperations([1,5,0,3,5])) //3
+log(minimumOperations([0])) //0
