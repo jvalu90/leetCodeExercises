@@ -3431,7 +3431,7 @@ var sortByBits = function(arr) {
         
     while (item > 0) {
 			counter += (item & 1);    
-			item = (item >> 1);        
+			item = (item >> 1);
     }
         
     arrayObject[element] = counter;
@@ -3442,6 +3442,7 @@ var sortByBits = function(arr) {
 
 //log(sortByBits([0,1,2,3,4,5,6,7,8])) // [0,1,2,4,8,3,5,6,7]
 //log(sortByBits([1024,512,256,128,64,32,16,8,4,2,1])) // [1,2,4,8,16,32,64,128,256,512,1024]
+//log(sortByBits([10]))
 
 /*
 2357. Make Array Zero by Subtracting Equal Amounts
@@ -3474,5 +3475,33 @@ var minimumOperations = function(nums) {
   //return new Set(nums.filter(element => element !== 0)).size
 };
 
-log(minimumOperations([1,5,0,3,5])) //3
-log(minimumOperations([0])) //0
+//log(minimumOperations([1,5,0,3,5])) //3
+//log(minimumOperations([0])) //0
+
+/*
+1974. Minimum Time to Type Word Using Special Typewriter
+
+There is a special typewriter with lowercase English letters 'a' to 'z' arranged in a circle with a pointer. A character can only be typed if the pointer is pointing to that character. The pointer is initially pointing to the character 'a'.
+
+Each second, you may perform one of the following operations:
+
+    Move the pointer one character counterclockwise or clockwise.
+    Type the character the pointer is currently on.
+
+Given a string word, return the minimum number of seconds to type out the characters in word.
+*/
+
+var minTimeToType = function(word) {
+ let counterTypes = word.length + Math.min(word.charCodeAt(0) - 97, 97 - word.charCodeAt(0) + 26);
+
+  for (let i = 0; i < word.length-1; i++) {
+    let diff = Math.abs(word.charCodeAt(i) - word.charCodeAt(i+1));
+    counterTypes += Math.min(26 - diff, diff);
+  }
+
+  return counterTypes
+};
+
+log(minTimeToType("abc")) //5
+log(minTimeToType("bza")) //7
+log(minTimeToType("zjpc")) //34
